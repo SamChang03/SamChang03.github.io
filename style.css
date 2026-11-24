@@ -147,3 +147,6 @@ figcaption { font-size: 0.875rem; color: #7a7a7a; margin-top: 0.5rem; }
   .grid3 { grid-template-columns: 1fr 1fr; }
   .spec th { width: 8.5rem; }
 }
+
+.links { font-weight: 500; }
+.grid3 figcaption { font-size: 0.8rem; }

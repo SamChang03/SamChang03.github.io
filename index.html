@@ -46,14 +46,6 @@
     <p class="callout">I am applying to PhD programs in the US for Fall 2027.</p>
   </div>
 
-  <h2>News</h2>
-  <ul class="news">
-    <li><b>2026</b> Received the <b>Dr. Mei Yi-Chi Memorial Prize</b>, NTHU's highest honor for graduating students.</li>
-    <li><b>2026</b> AEGIS measured in silicon: 691.2&nbsp;Gb/s and 40.2&nbsp;fJ/bit in TSMC 40&nbsp;nm.</li>
-    <li><b>2026</b> Our pre-silicon AEGIS paper was a <b>Best Paper Candidate</b> at the VLSI Design/CAD Symposium.</li>
-    <li><b>2026</b> Presented the FPGA prototype of our hyperchaotic RNG at <b>VLSI-TSA 2026</b>.</li>
-    <li><b>2026</b> NTHU Racing ranked <b>No.&nbsp;1 in Asia</b> in the Formula Student world ranking.</li>
-  </ul>
 
   <h2>Education</h2>
   <p class="entry"><b>National Tsing Hua University</b>, Hsinchu, Taiwan<br>
@@ -95,6 +87,11 @@
   <p class="meta">Caravel SoC on FPGA, Jun 2023 – Jun 2024. Advisor: Jiin Lai, former CTO of VIA Technologies.</p>
   <p>I added FIR, matrix-multiplication and sorting accelerators to a RISC-V SoC. Faster compute engines alone gave about 20× over software. Adding my own DMA engine for each accelerator, an SDRAM arbiter with burst prefetch, and separate code and data memory raised that to 530×, and 990× for matrix multiplication. The lesson I carry into accelerator research: data movement, not arithmetic, sets the limit.</p>
   <figure class="narrow"><img src="img/soc.jpg" alt="Block diagram of the user project area: DMA engines for FIR, matrix multiplication and Q-Sort share one SDRAM through an arbiter and controller." loading="lazy"><figcaption>My design in the SoC's user project area.</figcaption></figure>
+  <p class="links"><a href="https://github.com/SamChang03/SOC_Lab">SoC lab code on GitHub</a></p>
+
+  <h2>Future directions</h2>
+  <p><b>AI accelerators with built-in security.</b> AI accelerators hold valuable model weights and private user data, which makes them targets for side-channel and fault attacks. Countermeasures such as masking need a lot of fresh randomness, area, energy and data movement. My work so far covers three parts of this problem: cheap, fast randomness (AEGIS), leakage evaluation on real silicon, and the data-movement bottleneck in accelerator SoCs. In a PhD, I want to design the security countermeasures together with the accelerator's dataflow, and prove them in silicon.</p>
+  <p><b>Architecture for 3D chips.</b> When DRAM is stacked on a logic die, where each memory bank sits should shape the logic die's architecture and layout. I am interested in designing accelerators that are aware of this placement, to cut data movement and improve energy efficiency and speed.</p>
 </section>
 
 <!-- PUBLICATIONS -->
@@ -106,8 +103,7 @@
   </ol>
   <h2>Manuscripts in preparation</h2>
   <ol class="pubs">
-    <li><b>Y.-S. Chang</b>, C.-B. Chen, and Y.-H. Huang, “AEGIS: A 691.2-Gb/s 40.2-fJ/bit SRAM-seeded all-digital RNG based on hyperchaotic coupled-map lattice,” in preparation for <i>2027 Symposium on VLSI Technology and Circuits</i>. Measured silicon.</li>
-    <li><b>Y.-S. Chang</b>, C.-B. Chen, and Y.-H. Huang, “AEGIS: A 691.2-Gb/s 40.2-fJ/bit SRAM-seeded all-digital RNG based on hyperchaotic coupled-map lattice,” in preparation for <i>IEEE Transactions on Circuits and Systems I</i>. Measured silicon.</li>
+    <li><b>Y.-S. Chang</b>, C.-B. Chen, and Y.-H. Huang, “AEGIS: A 691.2-Gb/s 40.2-fJ/bit SRAM-seeded all-digital RNG based on hyperchaotic coupled-map lattice.” Measured silicon. Conference version in preparation for the <i>2027 Symposium on VLSI Technology and Circuits</i>; journal version in preparation for <i>IEEE Transactions on Circuits and Systems I</i>.</li>
   </ol>
 </section>
 
@@ -119,6 +115,7 @@
       <h2>2×2 MIMO-OFDM receiver</h2>
       <p class="meta">Digital Communication IC Design (graduate course). Solo project.</p>
       <p>Frame detection, FFT, channel estimation and zero-forcing MIMO detection, taken from RTL to layout.</p>
+      <p class="links"><a href="https://github.com/SamChang03/Digital-Communication-IC-Design">Code on GitHub</a></p>
     </div>
   </div>
   <div class="media">
@@ -135,14 +132,35 @@
 <section id="racing" class="page" data-title="Formula Student" data-sub="NTHU Racing, electric vehicle team">
   <figure class="wide"><img src="img/racing-track.jpg" alt="NTHU Racing's electric car number 68 cornering through cones at Formula Student Germany." loading="lazy"></figure>
   <p class="meta">Sep 2022 – present. Technical Advisor since 2025; Chief Electrical System Engineer 2023–2025.</p>
-  <p>Every year our team of about 70 students designs, builds and ships a new electric race car to compete in Europe. In 2026 we were ranked No.&nbsp;1 in Asia in the Formula Student world ranking.</p>
-  <p>When I took over the electrical division in 2023, it had three members. Over two years I started weekly hands-on training in the workshop and rebuilt it to about ten. We designed the car's 500&nbsp;V+ high-voltage system and low-voltage control units. At Formula Student Germany I wrote the Electrical System Form that certifies the car is safe to drive, and led the team through technical inspection. Building boards for this car is where I learned the skills I later used to measure AEGIS.</p>
+  <p>Every year our team of about 70 students designs, builds and ships a new electric race car to compete in Europe. Shipping the car alone costs about US$100,000 a year, so every engineering decision is made with limited people and money. Building boards for this car is where I learned the hands-on skills I later used to measure AEGIS.</p>
+  <h2>What I did</h2>
+  <ul class="news">
+    <li><b>Built the car's electrical system.</b> Led the division that designed and integrated the 500&nbsp;V+ high-voltage powertrain and the low-voltage control units. I designed the ECU v1.0 myself.</li>
+    <li><b>Owned safety certification at Formula Student Germany.</b> As Electrical System Officer, I wrote the Electrical System Form that certifies the car is safe for student drivers, and led the team through technical inspection.</li>
+    <li><b>Rebuilt the electrical division from 3 people to about 10.</b> I recruited people from any background and was the first division lead to run hands-on onboarding courses in the workshop. Four of the people I trained have since become electrical leads, and two have served as vice captain.</li>
+    <li><b>Made trade-offs with limited people and money.</b> We froze the electrical architecture for one season so the next car could get a new low-voltage BMS, a cooling control unit and an in-house inverter. As Technical Advisor, I then made reliability the priority and set a commercial-vehicle wiring standard.</li>
+  </ul>
+
+  <h2>Results</h2>
+  <ul class="news">
+    <li><b>2026</b> No.&nbsp;1 in Asia, Formula Student World Ranking (EV)</li>
+    <li><b>2026</b> 7th Overall, Formula Student Poland</li>
+    <li><b>2025</b> 12th in Skid-pad, Formula Student Germany, ahead of teams including TU Munich and KIT</li>
+    <li><b>2024</b> 1st Overall, Formula Student Taiwan</li>
+  </ul>
+
+  <h2>Hardware and competition</h2>
   <div class="grid3">
-    <figure><img class="fit" src="img/racing-ev.jpg" alt="Diagram of the car's electrical system: battery pack, inverter, ECU, LV battery and high-voltage disconnect." loading="lazy"></figure>
-    <figure><img src="img/racing-car.jpg" alt="Team members reviewing data on a laptop at a Formula Student competition." loading="lazy"></figure>
-    <figure><img src="img/racing-team.jpg" alt="The NTHU Racing team posing with the car." loading="lazy"></figure>
+    <figure><img class="fit" src="img/racing-ev.jpg" alt="Diagram of the car's electrical system: battery pack, inverter, ECU, LV battery and high-voltage disconnect." loading="lazy"><figcaption>Electrical system layout of the car.</figcaption></figure>
+    <figure><img src="img/inverter.jpg" alt="In-house inverter during assembly, with gate-driver boards and high-voltage wiring." loading="lazy"><figcaption>In-house inverter during assembly.</figcaption></figure>
+    <figure><img class="fit" src="img/bms-master.jpg" alt="PCB render of the BMS master board." loading="lazy"><figcaption>BMS master board (PCB render).</figcaption></figure>
   </div>
-  <p><a href="https://www.instagram.com/nthuracing/">NTHU Racing on Instagram</a></p>
+  <div class="grid3">
+    <figure><img src="img/racing-car.jpg" alt="Working through technical inspection with a scrutineer at Formula Student Czech Republic." loading="lazy"><figcaption>Technical inspection at Formula Student Czech Republic.</figcaption></figure>
+    <figure><img src="img/racing-team.jpg" alt="The NTHU Racing team posing with the car." loading="lazy"><figcaption>NTHU Racing with the car.</figcaption></figure>
+    <figure><img class="fit" src="img/bms-slave.jpg" alt="PCB render of the BMS slave board for the TH07 car." loading="lazy"><figcaption>BMS slave board for the TH07 car (PCB render).</figcaption></figure>
+  </div>
+  <p class="links"><a href="YSChang_NTHU_Racing.pdf">Engineering leadership summary (PDF)</a> &nbsp;|&nbsp; <a href="https://www.instagram.com/nthuracing/">NTHU Racing on Instagram</a></p>
 </section>
 
 <!-- HONORS -->
