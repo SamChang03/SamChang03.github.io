@@ -75,8 +75,8 @@ p { margin: 0 0 1rem; }
 .bio { overflow: hidden; }
 .portrait {
   float: left;
-  width: 23rem;
-  max-width: 45%;
+  width: 15rem;
+  max-width: 40%;
   margin: 0.25rem 2rem 1rem 0;
 }
 .callout {
@@ -141,7 +141,7 @@ figcaption { font-size: 0.875rem; color: #7a7a7a; margin-top: 0.5rem; }
   .hero { padding: 3rem 0; }
   .hero h1 { font-size: 1.9rem; }
   .hero p { font-size: 1.05rem; }
-  .portrait { float: none; max-width: 18rem; width: 100%; margin: 0 0 1.5rem; }
+  .portrait { float: none; max-width: 14rem; width: 100%; margin: 0 0 1.5rem; }
   .grid2, .media { grid-template-columns: 1fr; }
   .grid3 { grid-template-columns: 1fr 1fr; }
   .spec th { width: 8.5rem; }
