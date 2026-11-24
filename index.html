@@ -115,14 +115,13 @@
     <div>
       <h2>2×2 MIMO-OFDM receiver</h2>
       <p class="meta">Digital Communication IC Design (graduate course), Fall 2025. Solo project. Instructor: Prof. Yuan-Hao Huang.</p>
-      <p>A baseband receiver for a simplified IEEE 802.11n system: 2×2 spatial multiplexing, 64-subcarrier OFDM and QPSK. I built it from algorithm to layout: floating-point and fixed-point models in MATLAB, Verilog RTL, an FPGA prototype, and the full ASIC flow through place-and-route.</p>
+      <p>A baseband receiver for a simplified IEEE 802.11n system with 2×2 MIMO, 64-subcarrier OFDM and QPSK. I took it from MATLAB models to Verilog, an FPGA prototype, and place-and-route.</p>
       <ul class="news">
-        <li><b>Algorithm.</b> Simulated the receiver over a flat Rayleigh channel and the IEEE 802.11n channel model with multipath and Doppler, then chose a 16-bit Q(8,8) word length from the fixed-point results.</li>
-        <li><b>Synchronization.</b> Frame detection uses the short preamble's normalized autocorrelation, checked against a threshold without a divider. Fine symbol timing uses a transposed-form matched filter to shorten the critical path.</li>
-        <li><b>FFT.</b> A pipelined radix-2³ 64-point FFT that needs only one general complex multiplier.</li>
-        <li><b>Channel estimation and detection.</b> Tone-interleaved channel estimation with ±1 training symbols, so no divider is needed. Zero-forcing detection, because a 2×2 matrix inverse takes one cycle per subcarrier and needs no SNR estimate.</li>
+        <li><b>Word length from simulation.</b> Fixed-point simulation over Rayleigh and IEEE 802.11n multipath channels set a 16-bit Q(8,8) format.</li>
+        <li><b>Hardware-friendly datapath.</b> Frame detection and channel estimation need no divider, and a radix-2³ pipelined FFT needs only one general complex multiplier.</li>
+        <li><b>Zero-forcing detection.</b> A 2×2 inverse takes one cycle per subcarrier and needs no SNR estimate.</li>
       </ul>
-      <p><b>Result:</b> TSMC 90&nbsp;nm, 200&nbsp;MHz, 640&nbsp;Mb/s throughput, 559K gates, with no timing or DRC violations and equivalence checks passed. The FPGA prototype on a Xilinx Virtex-7 runs at 95&nbsp;MHz.</p>
+      <p><b>Result:</b> 640&nbsp;Mb/s at 200&nbsp;MHz in TSMC 90&nbsp;nm, 559K gates, with no timing or DRC violations.</p>
       <p class="links"><a href="https://github.com/SamChang03/Digital-Communication-IC-Design">Code on GitHub</a></p>
     </div>
   </div>
@@ -131,7 +130,13 @@
     <div>
       <h2>ECDSA accelerator on secp256k1</h2>
       <p class="meta">IC Design Laboratory, Fall 2024. Two-person team. Lecturer: Prof. Chao-Tsung Huang.</p>
-      <p>SHA-256 and ECDSA in Verilog, rescheduled into a pipeline with a Montgomery-ladder scalar multiplier for side-channel-aware design and an AXI-Stream interface. Taken through synthesis, equivalence checking, and place-and-route. This is where my interest in hardware security began.</p>
+      <p>An accelerator that hashes a message with SHA-256 and signs it with ECDSA on the secp256k1 curve, with an AXI-Stream interface. We took it through synthesis, equivalence checking, and place-and-route. This is where my interest in hardware security began.</p>
+      <ul class="news">
+        <li><b>Side-channel-aware design.</b> Jacobian coordinates with a Montgomery ladder, which performs a point addition and a point doubling at every step regardless of the key, and needs only one modular inverse instead of 256.</li>
+        <li><b>Faster modular multiplier.</b> A shift-subtract modular multiplier with a two-stage pipelined carry-select adder, 3× faster than our implementation of the reference design.</li>
+        <li><b>Rescheduled point operations.</b> Running point addition and doubling in parallel cut each step from 16 to 5 multiplications.</li>
+      </ul>
+      <p><b>Result:</b> one signature in 5.2&nbsp;ms after place-and-route, 3.3× faster than a published implementation and 11.6× faster than software. No timing or DRC violations.</p>
     </div>
   </div>
 </section>
