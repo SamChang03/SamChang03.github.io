@@ -127,7 +127,8 @@ figcaption { font-size: 0.875rem; color: #7a7a7a; margin-top: 0.5rem; }
 }
 
 /* Projects */
-.media { display: grid; grid-template-columns: 16rem 1fr; gap: 2rem; align-items: start; margin-bottom: 1rem; }
+.media { display: grid; grid-template-columns: 16rem 1fr; gap: 2rem; align-items: start; margin-bottom: 2.5rem; }
+.media h2 { margin-top: 0; }
 .media img { border: 1px solid var(--line); }
 
 /* Footer */
