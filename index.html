@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yu-Shuo (Sam) Chang</title>
+<meta name="description" content="Yu-Shuo (Sam) Chang — digital IC designer at National Tsing Hua University. Secure, energy-efficient AI accelerators, proven in measured silicon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <nav class="wrap nav" aria-label="Sections">
+    <a class="nav-name" href="#">Yu-Shuo Chang</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#racing">Racing</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero wrap">
+  <div class="hero-text">
+    <h1>Yu-Shuo (Sam) Chang</h1>
+    <p class="role">Electrical Engineering, National Tsing Hua University, Taiwan</p>
+    <p class="lede">I design digital chips and take them all the way to measured silicon. My current chip, AEGIS, is an all-digital random number generator in TSMC 40&nbsp;nm. I designed it from architecture to sign-off, built its test board, and measured it myself.</p>
+    <p class="lede">My goal is AI accelerators with security built into the architecture: side-channel and fault-attack resistance designed in from the start, and proven on real chips.</p>
+    <p class="status">I am applying to PhD programs in the US for Fall 2027.</p>
+    <ul class="links">
+      <li><a href="mailto:ee110030039@gapp.nthu.edu.tw">Email</a></li>
+      <li><a href="cv.pdf">CV (PDF)</a></li>
+      <li><a href="https://www.linkedin.com/in/yschang03">LinkedIn</a></li>
+      <li><a href="https://doi.org/10.1109/VLSITSA69131.2026.11527660">IEEE Xplore</a></li>
+    </ul>
+  </div>
+  <figure class="hero-die">
+    <img src="img/die.jpg" alt="Die micrograph of the AEGIS chip: a 0.44 mm square core with two SRAM banks around the all-digital hyperchaotic logic, surrounded by bond pads." width="1120" height="1078">
+    <figcaption>AEGIS die, TSMC 40&nbsp;nm. Core 0.44 × 0.44&nbsp;mm².</figcaption>
+  </figure>
+</section>
+
+<section id="research" class="wrap section">
+  <h2>Research</h2>
+
+  <article class="project">
+    <h3>AEGIS: a 691.2&nbsp;Gb/s all-digital random number generator</h3>
+    <p class="meta">Sep 2025 – present. Advisor: Prof. Yuan-Hao Huang. First author.</p>
+
+    <p>Security for AI and IoT devices needs fast, cheap randomness: for keys, authentication, and masking against side-channel attacks. The fastest true random number generators today use mixed-signal entropy sources. They must be recalibrated or redesigned at every new process node, and the SRAM next to them only stores data.</p>
+    <p>AEGIS takes a different route. Standard compiler-generated SRAM supplies entropy at power-up and then stores the output. A lattice of 24 four-dimensional hyperchaotic cells, built with no multipliers, turns that entropy into a fast random stream. Because the whole design is synthesizable, it can move to a new process as a soft IP with no analog calibration.</p>
+
+    <figure class="wide">
+      <img src="img/aegis-arch.jpg" alt="AEGIS architecture: the hyperchaotic coupled-map lattice, SRAM entropy source, and the multiplication-free four-dimensional datapath." loading="lazy">
+      <figcaption>Architecture: SRAM entropy source and storage, the 24-cell hyperchaotic coupled-map lattice, and the multiplication-free 4-D datapath.</figcaption>
+    </figure>
+
+    <table class="spec">
+      <caption>Measured results</caption>
+      <tbody>
+        <tr><th scope="row">Technology</th><td>TSMC 40&nbsp;nm CMOS, all-digital</td></tr>
+        <tr><th scope="row">Peak throughput</th><td>691.2&nbsp;Gb/s at 1.1&nbsp;V, 450&nbsp;MHz</td></tr>
+        <tr><th scope="row">Best energy efficiency</th><td>40.2&nbsp;fJ/bit at 0.6&nbsp;V, 175&nbsp;MHz (full chip, including SRAM)</td></tr>
+        <tr><th scope="row">Randomness</th><td>Passes all NIST SP 800-22 and SP 800-90B tests; IID min-entropy above 0.994</td></tr>
+        <tr><th scope="row">Side-channel leakage</th><td>None detected: TVLA |t| &lt; 4.5 over 1M power traces; CNN and Transformer attacks at chance level</td></tr>
+        <tr><th scope="row">Core</th><td>0.44 × 0.44&nbsp;mm², 213.4K gates</td></tr>
+      </tbody>
+    </table>
+
+    <p>I designed the 4-layer test PCB myself, with on-board regulators, current-sensing shunts, and 50&nbsp;Ω paths for clock and probes. The oscilloscope records the output bits and the power trace together, so each trace is labeled with its data for the security tests.</p>
+
+    <div class="pair">
+      <figure>
+        <img src="img/aegis-setup.jpg" alt="Measurement setup with oscilloscope, power supply and signal generator, and a close-up of the custom test PCB with the chip socket." loading="lazy">
+        <figcaption>Measurement setup and the custom test board.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/aegis-chip.jpg" alt="Die micrograph, chip summary table, energy-efficiency versus throughput comparison with published TRNGs, and voltage-frequency shmoo plot." loading="lazy">
+        <figcaption>Chip summary, comparison with published TRNGs, and shmoo plot.</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="project">
+    <h3>Workload-optimized RISC-V SoC</h3>
+    <p class="meta">Jun 2023 – Jun 2024. Advisor: Jiin Lai, former CTO of VIA Technologies.</p>
+    <p>I added FIR, matrix-multiplication and sorting accelerators to a Caravel RISC-V SoC and verified it on an FPGA. Faster compute engines alone gave about 20× over software. Adding my own DMA engine for each accelerator, an SDRAM arbiter with burst prefetch, and separate code and data memory raised that to 530× (990× for matrix multiplication).</p>
+    <p>The lesson I carry into accelerator research: data movement, not arithmetic, sets the limit.</p>
+    <figure class="wide">
+      <img src="img/soc.jpg" alt="Block diagram of the user project area: per-accelerator DMA engines for FIR, matrix multiplication and Q-Sort share one SDRAM through an arbiter and controller." loading="lazy">
+      <figcaption>My design in the SoC's user project area. Each accelerator has its own DMA engine; all share one SDRAM.</figcaption>
+    </figure>
+  </article>
+</section>
+
+<section id="publications" class="wrap section">
+  <h2>Publications</h2>
+  <ol class="pubs" reversed>
+    <li>
+      <span class="pub-title">AEGIS: A 691.2-Gb/s 40.2-fJ/bit SRAM-seeded all-digital RNG based on hyperchaotic coupled-map lattice.</span>
+      <span class="pub-authors"><b>Y.-S. Chang</b>, C.-B. Chen, Y.-H. Huang.</span>
+      <span class="pub-venue">In preparation for IEEE Transactions on Circuits and Systems I (TCAS-I). Measured silicon.</span>
+    </li>
+    <li>
+      <span class="pub-title">A 460.8-Gb/s 81.2-fJ/bit all-digital hyperchaotic TRNG chip with in-memory entropy source.</span>
+      <span class="pub-authors"><b>Y.-S. Chang</b>, C.-B. Chen, Y.-H. Huang.</span>
+      <span class="pub-venue">VLSI Design/CAD Symposium, Taiwan, 2026. Best Paper Candidate. Post-layout results.</span>
+    </li>
+    <li>
+      <span class="pub-title">51.2 Gbps high-entropy random number generator based on hyperchaotic system.</span>
+      <span class="pub-authors"><b>Y.-S. Chang</b>, C.-B. Chen, Y.-H. Huang.</span>
+      <span class="pub-venue">International VLSI Symposium on Technology, Systems and Applications (VLSI-TSA), 2026. FPGA prototype. <a href="https://doi.org/10.1109/VLSITSA69131.2026.11527660">DOI</a></span>
+    </li>
+  </ol>
+</section>
+
+<section id="projects" class="wrap section">
+  <h2>Course projects</h2>
+  <div class="split">
+    <div>
+      <h3>ECDSA accelerator on secp256k1</h3>
+      <p class="meta">IC Design Laboratory, Fall 2024. Two-person team.</p>
+      <p>SHA-256 and ECDSA in Verilog, rescheduled into a new pipeline with a Montgomery-ladder scalar multiplier for side-channel-aware design. Taken through synthesis, equivalence checking, and place-and-route. This project is where my interest in hardware security started.</p>
+      <h3>2×2 MIMO-OFDM receiver</h3>
+      <p class="meta">Digital Communication IC Design (graduate course). Solo project.</p>
+      <p>Frame detection, FFT, channel estimation and zero-forcing MIMO detection, taken to layout.</p>
+    </div>
+    <figure>
+      <img src="img/layout.jpg" alt="Chip layout of the MIMO-OFDM receiver with labeled blocks: MIMO detection, FFT, channel preprocessing, channel estimation, frame detector, match filter and output buffer." loading="lazy">
+      <figcaption>MIMO-OFDM receiver layout.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="racing" class="wrap section">
+  <h2>NTHU Racing</h2>
+  <p class="meta">Formula Student electric vehicle team, Sep 2022 – present. Technical Advisor since 2025; Chief Electrical System Engineer 2023–2025.</p>
+  <p>Every year our team of about 70 students designs, builds and ships a new electric race car to compete in Europe. In 2026 we were ranked No.&nbsp;1 in Asia in the Formula Student world ranking.</p>
+  <p>When I took over the electrical division in 2023, it had three members. Over two years I started weekly hands-on training in the workshop and rebuilt it to about ten. We designed the car's 500&nbsp;V+ high-voltage system and low-voltage control units. At Formula Student Germany I wrote the Electrical System Form that certifies the car is safe to drive, and led the team through technical inspection. Building test boards for this car is where I learned the board-level skills I later used to measure AEGIS.</p>
+  <div class="trio">
+    <figure><img class="fit" src="img/racing-ev.jpg" alt="Diagram of the race car's electrical system: battery pack, inverter, ECU, LV battery and high-voltage disconnect." loading="lazy"></figure>
+    <figure><img src="img/racing-car.jpg" alt="Team members reviewing data on a laptop at a Formula Student competition." loading="lazy"></figure>
+    <figure><img src="img/racing-team.jpg" alt="The NTHU Racing team posing with the car." loading="lazy"></figure>
+  </div>
+  <p class="more"><a href="https://www.instagram.com/nthuracing/">NTHU Racing on Instagram</a></p>
+</section>
+
+<section id="about" class="wrap section">
+  <h2>About</h2>
+  <div class="cols">
+    <div>
+      <h3>Education</h3>
+      <p>B.E. in Electrical Engineering, minor in Industrial Engineering and Engineering Management. National Tsing Hua University, 2021–2026. GPA 4.09/4.3.</p>
+      <h3>Honors</h3>
+      <ul class="plain">
+        <li>Dr. Mei Yi-Chi Memorial Prize, 2026. NTHU's highest honor for graduating students; 8 recipients.</li>
+        <li>Formula Student world ranking, No.&nbsp;1 in Asia (EV), 2026.</li>
+        <li>1st Prize Overall, Formula Student Taiwan, 2024.</li>
+        <li>Honorable Mention, NTHU EE Undergraduate Research Project Award, 2024.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Teaching</h3>
+      <ul class="plain">
+        <li>Head TA, Logic Design Lab, 2026. Led 8 TAs for 110+ students.</li>
+        <li>TA, Logic Design Lab, 2024–2025.</li>
+        <li>TA, Electronics II, 2024.</li>
+      </ul>
+      <h3>Tools</h3>
+      <p>SystemVerilog and Verilog; Synopsys Design Compiler and ICC II; Cadence Innovus and Conformal; Altium Designer; Python, C/C++, MATLAB. TSMC 16&nbsp;nm FinFET synthesis and place-and-route training (TSRI).</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap foot">
+  <p>Yu-Shuo (Sam) Chang. Updated November 2026.</p>
+</footer>
+
+</body>
+</html>
