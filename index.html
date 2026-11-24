@@ -114,8 +114,15 @@
     <img src="img/layout.jpg" alt="Layout of the MIMO-OFDM receiver with labeled blocks" loading="lazy">
     <div>
       <h2>2×2 MIMO-OFDM receiver</h2>
-      <p class="meta">Digital Communication IC Design (graduate course). Solo project.</p>
-      <p>Frame detection, FFT, channel estimation and zero-forcing MIMO detection, taken from RTL to layout.</p>
+      <p class="meta">Digital Communication IC Design (graduate course), Fall 2025. Solo project. Instructor: Prof. Yuan-Hao Huang.</p>
+      <p>A baseband receiver for a simplified IEEE 802.11n system: 2×2 spatial multiplexing, 64-subcarrier OFDM and QPSK. I built it from algorithm to layout: floating-point and fixed-point models in MATLAB, Verilog RTL, an FPGA prototype, and the full ASIC flow through place-and-route.</p>
+      <ul class="news">
+        <li><b>Algorithm.</b> Simulated the receiver over a flat Rayleigh channel and the IEEE 802.11n channel model with multipath and Doppler, then chose a 16-bit Q(8,8) word length from the fixed-point results.</li>
+        <li><b>Synchronization.</b> Frame detection uses the short preamble's normalized autocorrelation, checked against a threshold without a divider. Fine symbol timing uses a transposed-form matched filter to shorten the critical path.</li>
+        <li><b>FFT.</b> A pipelined radix-2³ 64-point FFT that needs only one general complex multiplier.</li>
+        <li><b>Channel estimation and detection.</b> Tone-interleaved channel estimation with ±1 training symbols, so no divider is needed. Zero-forcing detection, because a 2×2 matrix inverse takes one cycle per subcarrier and needs no SNR estimate.</li>
+      </ul>
+      <p><b>Result:</b> TSMC 90&nbsp;nm, 200&nbsp;MHz, 640&nbsp;Mb/s throughput, 559K gates, with no timing or DRC violations and equivalence checks passed. The FPGA prototype on a Xilinx Virtex-7 runs at 95&nbsp;MHz.</p>
       <p class="links"><a href="https://github.com/SamChang03/Digital-Communication-IC-Design">Code on GitHub</a></p>
     </div>
   </div>
